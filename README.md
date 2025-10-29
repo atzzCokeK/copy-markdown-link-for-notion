@@ -1,0 +1,1 @@
+# Copy Markdown Link for Notion
