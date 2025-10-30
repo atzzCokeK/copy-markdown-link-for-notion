@@ -12,14 +12,14 @@ export default async function main() {
 
     // Close Raycast window immediately
     await closeMainWindow();
-    
+
     // Wait for Raycast to fully close
     await new Promise((resolve) => setTimeout(resolve, 200));
 
     // Save current clipboard content
     const previousClipboard = await Clipboard.readText();
     await Clipboard.copy("");
-    
+
     // Get Notion page information via AppleScript
     const script = `
       tell application "Notion"
@@ -64,7 +64,7 @@ export default async function main() {
 
     const result = await runAppleScript(script);
     const [windowTitle, linkUrl] = result.split("|||");
-    
+
     // URL validation
     if (!linkUrl || !linkUrl.includes("notion.so")) {
       await showHUD("Failed to copy Notion link. Please try again.");
@@ -73,7 +73,6 @@ export default async function main() {
       }
       return;
     }
-
 
     // Escape square brackets
     let cleanedTitle = windowTitle.replace(/\[/g, "\\[").replace(/\]/g, "\\]");

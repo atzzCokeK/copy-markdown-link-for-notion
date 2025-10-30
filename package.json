@@ -4,8 +4,8 @@
   "title": "Copy Markdown Link for Notion",
   "description": "Copy the current Notion page as a Markdown link in the format `[title](url)`. ※This extension only works with the Notion Desktop app / この拡張機能はNotionのデスクトップアプリでのみ動作します。",
   "icon": "extension-icon.png",
-  "author": "atzzCokeK",
-  "owner": "atzzCokeK",
+  "author": "atsushi_kawamura",
+  "owner": "a2c",
   "platforms": [
     "macOS"
   ],
