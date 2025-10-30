@@ -21,24 +21,24 @@ A Raycast extension that copies the current Notion page as a Markdown link in th
 
 ### From Raycast Store (Recommended)
 
-Coming soon...
+Install from the [Raycast Store](https://www.raycast.com/a2c/copy-markdown-link-for-notion)
 
-### Manual Installation
+### Manual Installation for Development
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/copy-markdown-link-for-notion.git
+git clone https://github.com/atzzCokeK/copy-markdown-link-for-notion.git
 cd copy-markdown-link-for-notion
 ```
 
 2. Install dependencies:
 ```bash
-pnpm install
+npm install
 ```
 
 3. Build the extension:
 ```bash
-pnpm run build
+npm run build
 ```
 
 4. Import the extension in Raycast:
@@ -83,19 +83,19 @@ If the extension doesn't work, check:
 
 ```bash
 # Install dependencies
-pnpm install
+npm install
 
 # Run in development mode
-pnpm run dev
+npm run dev
 
 # Build for production
-pnpm run build
+npm run build
 
 # Lint code
-pnpm run lint
+npm run lint
 
 # Fix linting issues
-pnpm run fix-lint
+npm run fix-lint
 ```
 
 ## Troubleshooting
