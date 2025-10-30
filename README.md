@@ -9,7 +9,7 @@ A Raycast extension that copies the current Notion page as a Markdown link in th
 - ✅ Generates Markdown link: `[Page Title](https://notion.so/...)`
 - ✅ Copies to clipboard with visual feedback
 - ✅ Escapes special characters in title (e.g., `[`, `]`)
-- ✅ Normalizes `notion://` URLs to `https://`
+- ✅ Preserves previous clipboard content on failure
 
 ## Requirements
 
@@ -72,12 +72,16 @@ If the extension doesn't work, check:
 ## How It Works
 
 1. Checks if Notion is the frontmost application
-2. Closes Raycast window to avoid interfering with keyboard shortcuts
-3. Uses AppleScript to:
-   - Get the page title from the window's AXTitle attribute
-   - Trigger Cmd + L to copy the page URL
-4. Formats the title and URL as a Markdown link
-5. Copies to clipboard and shows a HUD notification
+2. Saves current clipboard content (restored on failure)
+3. Closes Raycast window to avoid interfering with keyboard shortcuts
+4. Uses AppleScript to:
+   - Iterate through UI elements to find the window's AXTitle attribute (works in fullscreen)
+   - Focus the window explicitly
+   - Trigger Cmd + L to copy the page URL to clipboard
+5. Validates the URL contains "notion.so"
+6. Escapes square brackets in the title
+7. Formats as a Markdown link: `[title](url)`
+8. Copies to clipboard and shows a HUD notification with the result
 
 ## Development
 
@@ -100,16 +104,21 @@ npm run fix-lint
 
 ## Troubleshooting
 
-**"Please open Notion" message**
-- Make sure the Notion desktop app is open and in focus
+**"Please open Notion (current: ...)" message**
+- Make sure the Notion desktop app is open and the frontmost (focused) application
+- The message shows which app is currently frontmost
 
-**"Failed to copy Notion link"**
+**"Failed to copy Notion link. Please try again."**
+- The URL doesn't contain "notion.so" (you might be on settings or an invalid page)
 - Ensure you're on a valid Notion page (not settings or empty views)
 - Check that Raycast has Accessibility permissions
+- Your previous clipboard content is automatically restored
 
-**Empty title or URL**
+**"No Notion page link detected"**
+- An unexpected error occurred during the process
 - Try again after ensuring the Notion page is fully loaded
-- Check that Cmd + L works manually in Notion
+- Verify that Cmd + L works manually in Notion (it should copy the page URL)
+- Check Accessibility permissions for Raycast
 
 ## License
 
