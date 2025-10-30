@@ -87,6 +87,6 @@ export default async function main() {
 
     await showHUD(`Copied: ${markdownLink}`);
   } catch (error) {
-    await showHUD("No Notion page link detected");
+    await showHUD(`No Notion page link detected: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
